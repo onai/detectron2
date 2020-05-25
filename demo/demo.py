@@ -5,6 +5,7 @@ import multiprocessing as mp
 import os
 import time
 import cv2
+import torch
 import tqdm
 
 from detectron2.config import get_cfg
@@ -104,7 +105,7 @@ if __name__ == "__main__":
                 else:
                     assert len(args.input) == 1, "Please specify a directory with args.output"
                     out_filename = args.output
-                np.save(os.path.join(args.output, os.path.basename(path) + 'predictions'), predictions)
+                torch.save(os.path.join(args.output, os.path.basename(path) + 'predictions'), predictions)
                 visualized_output.save(out_filename)
             else:
                 cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
